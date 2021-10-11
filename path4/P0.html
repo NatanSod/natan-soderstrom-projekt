@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page 4-0</title>
+
+    <link rel="stylesheet" href="../style.css" />
+    <script src="../script.js"></script>
+  </head>
+  <body id="page" class="4/P0">
+    <div class="page">
+      <p>4-0</p>
+      <div class="buttons">
+        <a class="buttons1" href="../path0/create.html">Previous Page.</a>
+        <a class="buttons1" href="./P1.html">Next Page.</a>
+      </div>
+      <div class="buttons">
+        <a href="#" id="saveP" class="buttons2" onclick="savePage();"> Save Page </a>
+        <a href="#" id="loadP" class="buttons2" onclick="load();"> Load Page </a>
+      </div>
+    </div>
+
+    <div class="backpop" id="backpop">
+
+      <div class="popup" id="nosave">
+        <p>
+          Because of legal reasons I just want to make sure you want to save
+          since it works by using Local Storage, which is similair to cookies.
+          Don't worry, the website is only saving the current page and nothing
+          else, the only one at risk of getting sued is me, I have no idea how
+          to acces this information or if I even can, and I have no interest in
+          accesing it.
+          <br />
+          (Note that if you're using an incognito tab the saved page will not
+          persist through closing the browser.)
+        </p>
+        <div class="centeritems">
+          <p>Do you want to save?</p>
+          <input onclick="wantSave('Yes');" type="submit" value="Yes." />
+          <input onclick="wantSave('No');" type="submit" value="No." />
+        </div>
+      </div>
+
+      <div class="popup" id="noload">
+        <p>You do not have a page saved.</p>
+        <div class="centeritems">
+          <input onclick="closePop();" type="submit" value="Close." />
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

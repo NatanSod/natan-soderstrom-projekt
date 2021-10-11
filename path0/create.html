@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create</title>
 
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <script src="./create.js"></script>
   </head>
   <body>
+    
+    <div class="page">
     <div class="canvas" id="canvas">
       <img class="ball r1" id="ball" />
       <img
         class="ball r1"
-        src="./ballwhite.png"
+        src="../images/ballwhite.png"
         id="ballwhite"
         style="filter: opacity(0)"
       />
@@ -119,7 +121,7 @@
           left: 200%;
         "
         onclick="makeColor('green'); pathTo(1); changeStage(2);"
-        >Green</a
+        >Some place<br>calm</a
       >
       <a
         href="#"
@@ -132,7 +134,7 @@
           left: 200%;
         "
         onclick="makeColor('blue'); pathTo(2); changeStage(2);"
-        >Blue</a
+        >Some place<br>cold</a
       >
       <a
         href="#"
@@ -144,8 +146,8 @@
           top: 50%;
           left: 200%;
         "
-        onclick="makeColor('blue'); pathTo(3); changeStage(2);"
-        >Red</a
+        onclick="makeColor('red'); pathTo(3); changeStage(2);"
+        >Some place<br>warm</a
       >
       <a
         href="#"
@@ -157,8 +159,8 @@
           top: 50%;
           left: 200%;
         "
-        onclick="makeColor('blue'); pathTo(4); changeStage(2);"
-        >Yellow</a
+        onclick="makeColor('yellow'); pathTo(4); changeStage(2);"
+        >Some place<br>dry</a
       >
       <a
         href="#"
@@ -170,8 +172,8 @@
           top: 50%;
           left: 200%;
         "
-        onclick="makeColor('blue'); pathTo(5); changeStage(2);"
-        >Purple</a
+        onclick="makeColor('purple'); pathTo(5); changeStage(2);"
+        >Some place<br>dark</a
       >
 
       <a
@@ -184,7 +186,7 @@
           top: 50%;
           left: 200%;
         "
-        onclick="makeColor('blue'); pathTo(2); changeStage(4);"
+        onclick="makeTint('i'); pathTo(2); changeStage(4);"
         >Special</a
       >
       <a
@@ -197,7 +199,7 @@
           top: 50%;
           left: 200%;
         "
-        onclick="makeColor('blue'); pathTo(1); changeStage(4);"
+        onclick="makeTint('n'); pathTo(1); changeStage(4);"
         >No one</a
       >
 
@@ -214,8 +216,61 @@
         onclick="changeStage(6);"
         >Create</a
       >
+
+      <a
+        href="#"
+        id="buttonbegin"
+        class="buttons1"
+        style="
+          position: absolute;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: 200%;
+          filter: opacity(0%);
+        "
+        >Begin Adventure</a
+      >
+    </div>
+      <p>create</p>
+      <div class="buttons">
+        <a class="buttons1" href="./P2.html">Previous Page.</a>
+      </div>
+      <div class="buttons">
+        <a href="#" id="saveP" class="buttons2" onclick="savePage();">
+          Save Page
+        </a>
+        <a href="#" id="loadP" class="buttons2" onclick="load();">
+          Load Page
+        </a>
+      </div>
     </div>
 
-    <input type="button" onclick="start();" value="Start" />
+    <div class="backpop" id="backpop">
+      <div class="popup" id="nosave">
+        <p>
+          Because of legal reasons I just want to make sure you want to save
+          since it works by using Local Storage, which is similair to cookies.
+          Don't worry, the website is only saving the current page and nothing
+          else, the only one at risk of getting sued is me, I have no idea how
+          to acces this information or if I even can, and I have no interest in
+          accesing it.
+          <br />
+          (Note that if you're using an incognito tab the saved page will not
+          persist through closing the browser.)
+        </p>
+        <div class="centeritems">
+          <p>Do you want to save?</p>
+          <input onclick="wantSave('Yes');" type="submit" value="Yes." />
+          <input onclick="wantSave('No');" type="submit" value="No." />
+        </div>
+      </div>
+
+      <div class="popup" id="noload">
+        <p>You do not have a page saved.</p>
+        <div class="centeritems">
+          <input onclick="closePop();" type="submit" value="Close." />
+        </div>
+      </div>
+    </div>
   </body>
 </html>

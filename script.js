@@ -17,7 +17,7 @@ function load() {
         document.getElementById('backpop').classList.add('visible');
     } else {
         var savepage = localStorage.getItem('savepage');
-        document.getElementById('loadP').href = savepage;
+        document.getElementById('loadP').href = "../path" + savepage + ".html";
     }
 }
 

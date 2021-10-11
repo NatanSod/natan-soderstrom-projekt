@@ -14,10 +14,12 @@ var a = 0,
   b = 0,
   c = 0;
 var color = "",
-  hasColor = 0;
+  tint = "",
+  hasColor = 0,
+  hasTint = 0;
 
 function start() {
-    canvas = document.getElementById("canvas");
+  canvas = document.getElementById("canvas");
   stage = 1;
   currentStep = 0;
   if (begin == 0) {
@@ -36,13 +38,13 @@ function start() {
             "opacity(" + (200 - currentStep) + "%)";
           hasColor = 1;
         }
-        moveTextBox(0);
+        moveTextBall(0);
         if (currentStep == 300) {
           nextPage();
         }
         currentStep++;
       } else if (stage == 3) {
-        moveTextBox(1);
+        moveTextBall(1);
         buttons2(0);
         currentStep++;
       } else if (stage == 4) {
@@ -53,15 +55,15 @@ function start() {
         } else {
           document.getElementById("ballwhite").style.filter =
             "opacity(" + (200 - currentStep) + "%)";
-          hasColor = 1;
+          hasTint = 1;
         }
-        moveTextBox(0);
+        moveTextBall(0);
         if (currentStep == 300) {
           nextPage();
         }
         currentStep++;
       } else if (stage == 5) {
-        moveTextBox(1);
+        moveTextBall(1);
         buttons3(0);
         currentStep++;
       } else if (stage == 6) {
@@ -69,7 +71,16 @@ function start() {
         moveBall();
         currentStep++;
       } else {
-        canvas.style.backgroundColor="#ffffff";
+        canvas.style.backgroundColor = "#ffffff";
+        if (currentStep > 100 && currentStep <= 200) {
+          var buttonbegin = document.getElementById("buttonbegin");
+          buttonbegin.style.left = "50%";
+          buttonbegin.style.filter = "opacity(" + (currentStep - 100) + "%)";
+        }
+        if (currentStep == 200) {
+          document.getElementById("buttonbegin").href = "../path" + path + "/P0.html";
+        }
+        currentStep++;
       }
       animate();
     }, 10);
@@ -85,15 +96,15 @@ function changeStage(toStage) {
   currentStep = 0;
 }
 
-function moveTextBox(phace) {
-  var textBox = document.getElementById("textholder");
+function moveTextBall(phace) {
+  var textBall = document.getElementById("textholder");
   var rad;
   if (currentStep < 300 && phace == 0) {
     rad = Math.pow(currentStep - 300, 2) / 10 + hig / 4;
   } else if (currentStep < 300 && phace == 1) {
     rad = Math.pow(currentStep, 2) / 10 + hig / 4;
   }
-  textBox.style.top = hig / 2 - rad + "px";
+  textBall.style.top = hig / 2 - rad + "px";
 }
 
 var part = 1,
@@ -169,9 +180,9 @@ function buttons2(phace) {
   var noone = document.getElementById("buttonnoone");
   var rad;
 
-  if (currentStep < 300 && phace == 0) {
-    rad = Math.pow(currentStep - 300, 2) / 10 + 200;
-  } else if (currentStep < 300 && phace == 1) {
+  if (currentStep < 100 && phace == 0) {
+    rad = Math.pow(currentStep - 100, 2) / 10 + 200;
+  } else if (currentStep < 100 && phace == 1) {
     rad = Math.pow(currentStep, 2) / 10 + 200;
   }
   special.style.top = -getCircleSinPos(2, 0.5, rad) + hig / 2 + "px";
@@ -184,9 +195,9 @@ function buttons3(phace) {
   var create = document.getElementById("buttoncreate");
   var rad;
 
-  if (currentStep < 300 && phace == 0) {
-    rad = Math.pow(currentStep - 300, 2) / 10 + 200;
-  } else if (currentStep < 300 && phace == 1) {
+  if (currentStep < 100 && phace == 0) {
+    rad = Math.pow(currentStep - 100, 2) / 10 + 200;
+  } else if (currentStep < 100 && phace == 1) {
     rad = Math.pow(currentStep, 2) / 10 + 200;
   }
   create.style.top = rad + hig / 2 + "px";
@@ -226,9 +237,9 @@ function moveBall() {
     x = -2000;
   }
 
-  var theBox = document.getElementById("ball");
-  theBox.style.left = x + "px";
-  theBox.style.top = y + "px";
+  var theBall = document.getElementById("ball");
+  theBall.style.left = x + "px";
+  theBall.style.top = y + "px";
 }
 
 function animate() {
@@ -248,9 +259,11 @@ function animate() {
     turn++;
   }
   if (hasColor == 0) {
-    theBall.src = "ball" + image + ".png";
-  } else {
-    theBall.src = "ball" + color + image + ".png";
+    theBall.src = "../images/ball" + image + ".png";
+  } else if (hasColor == 1 && hasTint == 0) {
+    theBall.src = "../images/ball" + color + image + ".png";
+  } else if (hasColor == 1 && hasTint == 1) {
+    theBall.src = "../images/ball" + color + tint + image + ".png";
   }
   if (animateStep % 7 == 0) {
     image++;
@@ -260,4 +273,8 @@ function animate() {
 
 function makeColor(theColor) {
   color = theColor;
+}
+
+function makeTint(theTint) {
+  tint = theTint;
 }
