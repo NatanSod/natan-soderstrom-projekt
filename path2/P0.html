@@ -7,7 +7,7 @@
     <title>Page 2-0</title>
 
     <link rel="stylesheet" href="../style.css" />
-    <script src="../script.js"></script>
+    <script defer src="../script.js"></script>
   </head>
   <body id="page" class="2/P0">
     <div class="page">
@@ -22,35 +22,7 @@
       </div>
     </div>
 
-    <div class="backpop" id="backpop">
-
-      <div class="popup" id="nosave">
-        <p>
-          Because of legal reasons I just want to make sure you want to save
-          since it works by using Local Storage, which is similair to cookies.
-          Don't worry, the website is only saving the current page and nothing
-          else, the only one at risk of getting sued is me, I have no idea how
-          to acces this information or if I even can, and I have no interest in
-          accesing it.
-          <br />
-          (Note that if you're using an incognito tab the saved page will not
-          persist through closing the browser.)
-        </p>
-        <div class="centeritems">
-          <p>Do you want to save?</p>
-          <input onclick="wantSave('Yes');" type="submit" value="Yes." />
-          <input onclick="wantSave('No');" type="submit" value="No." />
-        </div>
-      </div>
-
-      <div class="popup" id="noload">
-        <p>You do not have a page saved.</p>
-        <div class="centeritems">
-          <input onclick="closePop();" type="submit" value="Close." />
-        </div>
-      </div>
-
-    </div>
+      
 
   </body>
 </html>

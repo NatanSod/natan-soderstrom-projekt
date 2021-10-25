@@ -7,9 +7,10 @@ var image = 1,
   turn = 2;
 var begin = 0;
 var bobo;
-var wid = 864,
-  hig = 648;
 var canvas = document.getElementById("canvas");
+var container = document.getElementById("container")
+var wid = canvas.clientWidth,
+  hig = canvas.clientHeight;
 var a = 0,
   b = 0,
   c = 0;
@@ -17,6 +18,24 @@ var color = "",
   tint = "",
   hasColor = 0,
   hasTint = 0;
+
+
+function doResize() {  
+  var scale, origin;
+  console.log(wid);
+  console.log(container.clientWidth); 
+  scale = Math.min(
+    container.clientWidth / wid,
+    container.clientHeight / hig
+  );
+  console.log(scale);
+  canvas.style.transform = "translate(-50%, -0%) " + "scale(" + scale + ")";
+  
+}
+
+
+
+doResize();
 
 function start() {
   canvas = document.getElementById("canvas");
@@ -38,13 +57,20 @@ function start() {
             "opacity(" + (200 - currentStep) + "%)";
           hasColor = 1;
         }
-        moveTextBall(0);
-        if (currentStep == 300) {
+        moveTextBox(0);
+        if (currentStep == 1) {
           nextPage();
         }
         currentStep++;
       } else if (stage == 3) {
-        moveTextBall(1);
+        moveTextBox(1);
+        if (currentStep == 100) {
+          document
+            .getElementById(part + "-" + path + "-" + (page - 1))
+            .classList.remove("visible");
+          page = 0;
+          part = 2;
+        }
         buttons2(0);
         currentStep++;
       } else if (stage == 4) {
@@ -57,13 +83,19 @@ function start() {
             "opacity(" + (200 - currentStep) + "%)";
           hasTint = 1;
         }
-        moveTextBall(0);
-        if (currentStep == 300) {
+        moveTextBox(0);
+        if (currentStep == 1) {
           nextPage();
         }
         currentStep++;
       } else if (stage == 5) {
-        moveTextBall(1);
+        moveTextBox(1);
+        if (currentStep == 100) {
+          document
+            .getElementById(part + "-" + path + "-" + (page - 1))
+            .classList.remove("visible");
+          page = 0;
+        }
         buttons3(0);
         currentStep++;
       } else if (stage == 6) {
@@ -78,7 +110,8 @@ function start() {
           buttonbegin.style.filter = "opacity(" + (currentStep - 100) + "%)";
         }
         if (currentStep == 200) {
-          document.getElementById("buttonbegin").href = "../path" + path + "/P0.html";
+          document.getElementById("buttonbegin").href =
+            "../path" + path + "/P0.html";
         }
         currentStep++;
       }
@@ -96,7 +129,7 @@ function changeStage(toStage) {
   currentStep = 0;
 }
 
-function moveTextBall(phace) {
+function moveTextBox(phace) {
   var textBall = document.getElementById("textholder");
   var rad;
   if (currentStep < 300 && phace == 0) {
@@ -118,7 +151,7 @@ var pages = [
 ];
 function nextPage() {
   page++;
-  if (page > 1 && pages[part - 1][path - 1] + 1 >= page) {
+  if (page > 1 && pages[part - 1][path - 1] + 1 > page) {
     document
       .getElementById(part + "-" + path + "-" + (page - 1))
       .classList.remove("visible");
@@ -130,8 +163,6 @@ function nextPage() {
   } else if (pages[part - 1][path - 1] < page) {
     if (part == 1) {
       changeStage(3);
-      page = 0;
-      part = 2;
     } else {
       changeStage(5);
     }

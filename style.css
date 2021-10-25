@@ -1,3 +1,9 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #303030;
 }
@@ -42,25 +48,35 @@ p {
   font-size: 20px;
 }
 
+a {
+  cursor: pointer;
+}
+
+img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
 .page {
-  width: 864px;
+  max-width: 884px;
+  width: 66%;
   margin: auto;
   color: white;
   background-color: black;
   padding: 20px;
+  box-shadow: 0px 0px 10px black;
 }
-
-
 
 .buttons1 {
   color: black;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  width: 120px;
   text-align: center;
-  font-size: large;
+  font-size: 100%;
   margin: auto;
+  box-shadow: 0px 0px 5px white;
 }
 
 .buttons2 {
@@ -68,11 +84,17 @@ p {
   background-color: white;
   padding: 10px;
   border-radius: 10px;
-  width: 70px;
+  box-shadow: 0px 0px 5px white;
+  
+  text-align: center;
+  font-size: 80%;
+  margin: auto;
+
 }
 
 .buttons {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   text-align: center;
   padding: 20px;
@@ -139,24 +161,28 @@ p {
   overflow: hidden;
 
   background-color: black;
+  max-width: 864px;
   width: 864px;
   height: 648px;
   top: 0%;
   left: 50%;
-  position: static;
-  transform: translate(-0%, -0%);
+  position: relative;
+  transform: translate(-50%, -0%);
+  transform-origin: center center;
+  display: block;
 }
 
 .textholder {
   position: absolute;
   transform: translate(-50%, -50%);
 
+  cursor: pointer;
   color: black;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  width: 600px;
-  height: 120px;
+  width: 640px;
+  height: 140px;
   text-align: center;
   font-size: large;
   margin: auto;
@@ -196,4 +222,8 @@ p {
 }
 #buttonnoone:hover {
   color: brown;
+}
+
+.incase {
+  font-size: small;
 }
