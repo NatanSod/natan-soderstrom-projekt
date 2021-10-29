@@ -1,3 +1,5 @@
+window.addEventListener("resize", doResize);
+
 var currentStep = 0,
   animateStep = 1;
 
@@ -7,10 +9,12 @@ var image = 1,
   turn = 2;
 var begin = 0;
 var bobo;
+
 var canvas = document.getElementById("canvas");
-var container = document.getElementById("container")
+var container = document.getElementById("container");
 var wid = canvas.clientWidth,
   hig = canvas.clientHeight;
+
 var a = 0,
   b = 0,
   c = 0;
@@ -19,21 +23,14 @@ var color = "",
   hasColor = 0,
   hasTint = 0;
 
-
-function doResize() {  
+function doResize() {
   var scale, origin;
-  console.log(wid);
-  console.log(container.clientWidth); 
-  scale = Math.min(
-    container.clientWidth / wid,
-    container.clientHeight / hig
-  );
-  console.log(scale);
+  scale = Math.min(container.clientWidth / wid, container.clientHeight / hig);
+  if (scale > 1) {
+    scale = 1
+  }
   canvas.style.transform = "translate(-50%, -0%) " + "scale(" + scale + ")";
-  
 }
-
-
 
 doResize();
 
@@ -125,8 +122,11 @@ function start() {
 
 var stage = 0;
 function changeStage(toStage) {
-  stage = toStage;
-  currentStep = 0;
+  if (stage != toStage) {
+    stage = toStage;
+    currentStep = 0;
+  }
+  
 }
 
 function moveTextBox(phace) {
@@ -150,21 +150,23 @@ var pages = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 function nextPage() {
-  page++;
-  if (page > 1 && pages[part - 1][path - 1] + 1 > page) {
-    document
+  if (stage == 2 || stage == 4) {
+    page++;
+    if (page > 1 && pages[part - 1][path - 1] + 1 > page) {
+      document
       .getElementById(part + "-" + path + "-" + (page - 1))
       .classList.remove("visible");
   }
   if (pages[part - 1][path - 1] >= page) {
     document
-      .getElementById(part + "-" + path + "-" + page)
+    .getElementById(part + "-" + path + "-" + page)
       .classList.add("visible");
-  } else if (pages[part - 1][path - 1] < page) {
-    if (part == 1) {
-      changeStage(3);
-    } else {
-      changeStage(5);
+    } else if (pages[part - 1][path - 1] < page) {
+      if (part == 1) {
+        changeStage(3);
+      } else {
+        changeStage(5);
+      }
     }
   }
 }

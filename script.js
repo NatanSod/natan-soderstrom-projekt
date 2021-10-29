@@ -1,6 +1,24 @@
 var theDiv = document.getElementById("page");
-theDiv.innerHTML +=
-  '<div class="backpop" id="backpop"><div class="popup" id="nosave"><p>Because of legal reasons I just want to make sure you want to save since it works by using Local Storage, which is similair to cookies. Don\'t worry, the website is only saving the current page and nothingelse, the only one at risk of getting sued is me, I have no idea how to acces this infor mation or if I even can, and I have no interest in accesing it.<br />(Note that if you\'re using an incognito tab the saved page will not persist through closing the browser.)</p><div class="centeritems"><p>Do you want to save?</p><input onclick="wantSave(\'Yes\');" type="submit" value="Yes." /><input onclick="wantSave(\'No\');" type="submit" value="No." /></div></div><div class="popup" id="noload"><p>You do not have a page saved.</p><div class="centeritems"><input onclick="closePop();" type="submit" value="Close." /></div></div></div>';
+if (theDiv.classList != "0/create") {
+  theDiv.innerHTML +=
+    '<div class="backpop" id="backpop">'+
+    '<div class="popup" id="nosave">'+
+    '<p>' +
+    'Because of legal reasons I just want to make sure you want to save since it works by using Local Storage, which is similair to cookies. Don\'t worry, the website is only saving the current page and nothing else, the only one at risk of getting sued is me, I have no idea how to access this information or if I even can, and I have no interest in accessing it.<br />(Note that if you\'re using an incognito tab the saved page will not persist through closing the browser.)' + 
+    '</p>' +
+    '<div class="centeritems">' +
+    '<p>Do you want to save?' +
+    '</p>' +
+    '<input onclick="wantSave(\'Yes\');" type="submit" value="Yes." />' +
+    '<input onclick="wantSave(\'No\');" type="submit" value="No." />' +
+    '</div></div><div class="popup" id="noload">' +
+    '<p>You do not have a page saved.</p>' +
+    '<div class="centeritems">' +
+    '<input onclick="closePop();" type="submit" value="Close." />' +
+    '</div>' +
+    '</div>' +
+    '</div>';
+}
 
 function savePage() {
   if (!localStorage.getItem("savepage")) {
