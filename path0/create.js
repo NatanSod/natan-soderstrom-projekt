@@ -1,5 +1,60 @@
 window.addEventListener("resize", doResize);
 
+var buttonstart = document.getElementById("buttonstart"),
+  green = document.getElementById("buttongreen"),
+  blue = document.getElementById("buttonblue"),
+  red = document.getElementById("buttonred"),
+  yellow = document.getElementById("buttonyellow"),
+  purple = document.getElementById("buttonpurple"),
+  special = document.getElementById("buttonspecial"),
+  noone = document.getElementById("buttonnoone"),
+  create = document.getElementById("buttoncreate"),
+  buttonbegin = document.getElementById("buttonbegin"),
+  textHolder = document.getElementById("textholder");
+
+buttonstart.addEventListener("click", start);
+
+green.addEventListener("click", function () {
+  change1("green", 1, 2);
+});
+blue.addEventListener("click", function () {
+  change1("blue", 2, 2);
+});
+red.addEventListener("click", function () {
+  change1("red", 3, 2);
+});
+yellow.addEventListener("click", function () {
+  change1("yellow", 4, 2);
+});
+purple.addEventListener("click", function () {
+  change1("purple", 5, 2);
+});
+
+function change1(color, path, stage) {
+  makeColor(color);
+  pathTo(path);
+  changeStage(stage);
+}
+
+special.addEventListener("click", function () {
+  change2('i', 2, 4);
+});
+noone.addEventListener("click", function () {
+  change2('n', 1, 4);
+});
+
+function change2(tint, path, stage) {
+  makeTint(tint); 
+  pathTo(path); 
+  changeStage(stage);
+}
+
+create.addEventListener("click", function () {
+  changeStage(6);
+})
+
+textHolder.addEventListener("click", nextPage)
+
 var currentStep = 0,
   animateStep = 1;
 
@@ -12,6 +67,7 @@ var bobo;
 
 var canvas = document.getElementById("canvas");
 var container = document.getElementById("container");
+var canvasContainer = document.getElementById("canvascontainer");
 var wid = canvas.clientWidth,
   hig = canvas.clientHeight;
 
@@ -27,9 +83,10 @@ function doResize() {
   var scale, origin;
   scale = Math.min(container.clientWidth / wid, container.clientHeight / hig);
   if (scale > 1) {
-    scale = 1
+    scale = 1;
   }
   canvas.style.transform = "translate(-50%, -0%) " + "scale(" + scale + ")";
+  canvasContainer.style.height = 648 * scale + "px";
 }
 
 doResize();
@@ -102,13 +159,11 @@ function start() {
       } else {
         canvas.style.backgroundColor = "#ffffff";
         if (currentStep > 100 && currentStep <= 200) {
-          var buttonbegin = document.getElementById("buttonbegin");
           buttonbegin.style.left = "50%";
           buttonbegin.style.filter = "opacity(" + (currentStep - 100) + "%)";
         }
         if (currentStep == 200) {
-          document.getElementById("buttonbegin").href =
-            "../path" + path + "/P0.html";
+          buttonbegin.href = "../path" + path + "/P0.html";
         }
         currentStep++;
       }
@@ -126,18 +181,16 @@ function changeStage(toStage) {
     stage = toStage;
     currentStep = 0;
   }
-  
 }
 
 function moveTextBox(phace) {
-  var textBall = document.getElementById("textholder");
   var rad;
   if (currentStep < 300 && phace == 0) {
     rad = Math.pow(currentStep - 300, 2) / 10 + hig / 4;
   } else if (currentStep < 300 && phace == 1) {
     rad = Math.pow(currentStep, 2) / 10 + hig / 4;
   }
-  textBall.style.top = hig / 2 - rad + "px";
+  textHolder.style.top = hig / 2 - rad + "px";
 }
 
 var part = 1,
@@ -154,13 +207,13 @@ function nextPage() {
     page++;
     if (page > 1 && pages[part - 1][path - 1] + 1 > page) {
       document
-      .getElementById(part + "-" + path + "-" + (page - 1))
-      .classList.remove("visible");
-  }
-  if (pages[part - 1][path - 1] >= page) {
-    document
-    .getElementById(part + "-" + path + "-" + page)
-      .classList.add("visible");
+        .getElementById(part + "-" + path + "-" + (page - 1))
+        .classList.remove("visible");
+    }
+    if (pages[part - 1][path - 1] >= page) {
+      document
+        .getElementById(part + "-" + path + "-" + page)
+        .classList.add("visible");
     } else if (pages[part - 1][path - 1] < page) {
       if (part == 1) {
         changeStage(3);
@@ -182,19 +235,12 @@ function pathTo(newPath) {
 function buttons1(phace) {
   var rad;
   if (currentStep < 100 && phace == 0) {
-    var startb = document.getElementById("buttonstart");
-    startb.style.top = Math.pow(currentStep, 2) / 10 + hig / 2 + "px";
+    buttonstart.style.top = Math.pow(currentStep, 2) / 10 + hig / 2 + "px";
 
     rad = Math.pow(currentStep - 100, 2) / 10 + 200;
   } else if (currentStep < 100 && phace == 1) {
     rad = Math.pow(currentStep, 2) / 10 + 200;
   }
-
-  var green = document.getElementById("buttongreen");
-  var blue = document.getElementById("buttonblue");
-  var red = document.getElementById("buttonred");
-  var yellow = document.getElementById("buttonyellow");
-  var purple = document.getElementById("buttonpurple");
 
   green.style.top = -getCircleSinPos(5, 0, rad) + hig / 2 + "px";
   green.style.left = -getCircleCosPos(5, 0, rad) + wid / 2 + "px";
@@ -209,8 +255,6 @@ function buttons1(phace) {
 }
 
 function buttons2(phace) {
-  var special = document.getElementById("buttonspecial");
-  var noone = document.getElementById("buttonnoone");
   var rad;
 
   if (currentStep < 100 && phace == 0) {
@@ -225,7 +269,6 @@ function buttons2(phace) {
 }
 
 function buttons3(phace) {
-  var create = document.getElementById("buttoncreate");
   var rad;
 
   if (currentStep < 100 && phace == 0) {

@@ -110,6 +110,7 @@ img {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  padding: 20px;
 }
 
 .popup.visible {
@@ -129,6 +130,17 @@ img {
 
 .backpop.visible {
   display: block;
+}
+
+.poptext {
+  margin: auto;
+  padding: 10px;
+  max-width: 600px;
+
+}
+
+input[type="submit"] {
+  margin: 5px;
 }
 
 .centeritems {
