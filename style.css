@@ -56,6 +56,9 @@ img {
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+  max-width: 864px;
+  max-height: 648px;
+  width: 100%;
 }
 
 .page {
@@ -67,6 +70,14 @@ img {
   background-color: black;
   padding: 20px;
   box-shadow: 0px 0px 10px black;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
 }
 
 .buttons1 {
