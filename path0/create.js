@@ -200,7 +200,7 @@ var part = 1,
 var currentPage;
 var pages = [
   [2, 2, 2, 2, 2],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [2, 2, 2, 2, 2, 3, 2, 2, 1, 2],
 ];
 function nextPage() {
   if (stage == 2 || stage == 4) {

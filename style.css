@@ -56,6 +56,9 @@ img {
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+}
+
+.page > img {
   max-width: 864px;
   max-height: 648px;
   width: 100%;
@@ -72,6 +75,10 @@ img {
   box-shadow: 0px 0px 10px black;
 }
 
+.text {
+  margin: 10px 20px;
+}
+
 .red {
   color: red;
 }
@@ -79,6 +86,15 @@ img {
 .blue {
   color: blue;
 }
+
+.green {
+  color: lightgreen;
+}
+
+.yellow {
+  color: yellow;
+}
+
 
 .buttons1 {
   color: black;
@@ -163,20 +179,21 @@ input[type="submit"] {
 
   top: 50%;
   left: 50%;
+  transform: scale(300%);
 }
 
 .ball.r1 {
-  transform: translate(-50%, -50%) rotate(0turn);
+  transform: translate(-50%, -50%) rotate(0turn) scale(300%);
 }
 
 .ball.r2 {
-  transform: translate(-50%, -50%) rotate(0.25turn);
+  transform: translate(-50%, -50%) rotate(0.25turn) scale(300%);
 }
 .ball.r3 {
-  transform: translate(-50%, -50%) rotate(0.5turn);
+  transform: translate(-50%, -50%) rotate(0.5turn) scale(300%);
 }
 .ball.r4 {
-  transform: translate(-50%, -50%) rotate(0.75turn);
+  transform: translate(-50%, -50%) rotate(0.75turn) scale(300%);
 }
 
 .canvas {
@@ -195,6 +212,8 @@ input[type="submit"] {
   transform-origin: center top;
   display: block;
 }
+
+
 
 .textholder {
   position: absolute;
